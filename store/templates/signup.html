@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Webpage</title>
+    <link rel="stylesheet" href="/static/signup.css">
+  </head>
+
+  <body>
+
+    <!--Navbar And Front-->
+    <nav class="navbar">
+      <h1 class="logo">Foody Panda</h1>
+      <ul class="nav-links">
+        <li><a href="menu">Home</a></li>
+        <li><a href="/signinpage">SignIn</a></li>
+        <li><a href="#">AboutUs</a></li>
+        <li><a href="#">ContactUs</a></li>
+      </ul>
+    </nav>
+
+    <!--Full body-->
+    <header>
+      <div class="content">
+        <h1>Already Have an<br>Account?</h1>
+        <button class="bn"><a href="signin.html">SignIn</a></button>
+      </div>
+
+
+      <form action="/signup" method="POST">
+        {% csrf_token %}
+        <div class="form1">
+            <h2>Create An Account</h2>
+            <input type="text" name="first_name" id="first_name" placeholder="Enter Your Full Name">
+            <input type="emal" name="email"  id="email" placeholder="Enter Your Email">
+            <input type="password" name="pass1" id="pass1" placeholder="Create Password">
+            <input type="password" name="pass2" id="pass2" placeholder="Re-enter Password">
+            <button type="submit" class="btnn">Create Account</button>
+
+            <p class="link">Already have an account?
+                <a href="signin.html">SignIn Here</a>
+            </p><br>
+        </div>
+      </form>
+
+
+      
+    </header>
+     <!--footer-->
+     <footer>
+        <div class="footer_main">
+  
+          <div class="footer-tag">
+            <h2>Location</h2>
+            <p>Kolkata</p>
+            <p>Delhi</p>
+            <p>Jammu & Kashmir</p>
+            <p>Tamilnadu</p>
+            <p>Srinagar</p>
+            <p>Sikkim</p>
+          </div>
+  
+          <div class="footer-tag">
+            <h2>Quick Link</h2>
+            <p>Home</p>
+            <p>Menu</p>
+            <p>SignUp</p>
+            <p>SignIn</p>
+            <p>Order</p>
+            <p>AboutUs</p>
+            <p>ContactUs</p>
+            
+          </div>
+  
+          <div class="footer-tag">
+            <h2>Contact</h2>
+            <p>+91 7980547826</p>
+            <p>+91 7278963577</p>
+            <p>aroy9923@gmail.com</p>
+            <p>foodypanda123@gmail.com</p>
+          </div>
+          
+          <div class="footer-tag">
+            <h2>Our Services</h2>
+            <p>Fast Delivery</p>
+            <p>Easy Payment</p>
+            <p>24 X 7 Service</p>
+          </div>
+  
+        </div>
+  
+        <p class="end">Design by<span>@Akash Roy</span></p>
+       </footer>
+    </body>
+</html>
+  

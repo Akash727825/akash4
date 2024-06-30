@@ -1,0 +1,130 @@
+
+{% load cart %}
+{% load myfilter %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Webpage</title>
+    <link rel="stylesheet" href="/static/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
+
+  </head>
+
+  <body>
+
+    <!--Navbar And Front-->
+    <nav class="navbar">
+      <h1 class="logo">Foody Panda</h1>
+      <ul class="nav-links">
+        <li><a href="front">Home</a></li>
+        <li><a href="orderNow">Order</a></li>
+        <li><a href="#">AboutUs</a></li>
+        <li><a href="#">ContactUs</a></li>
+        <li><a href="cart1">Cart</a></li>
+        <li><a href="logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <section class="menu">
+        <div class="card">
+          <h1>Our Menu</h1>
+          <div class="line"></div>
+        </div>
+    
+     
+        
+        <div class="card-container">
+          {% for product in products %}
+          <div class="card-cnt" id={{product.id}}>
+            <img src="{{product.image.url}}">
+            <div class="card-content">
+              <h1>{{product.name}}</h1>
+              <p>{{product.price|currency}}</p>
+
+              <!--Cart manage-->
+              <div class="addcart">
+                {% if product|is_in_cart:request.session.cart %}
+                <div class="row1">
+                  <form action="/menu" class="but1" method="POST">
+                    {% csrf_token %}
+                    <input hidden type="text" name= "product" value='{{product.id}}'>
+                    <input hidden type="text" name= "remove" value='True'>
+                    <input type="submit" value=" - ">
+                  </form>
+                  <div class="option">{{product|cart_quantity:request.session.cart}} in cart</div>
+                  <form action="/menu" class="but1" method="POST">
+                    {% csrf_token %}
+                    <input hidden type="text" name= "product" value='{{product.id}}'>
+                    <input type="submit" value=" + ">
+                  </form>
+                </div>
+                {% else %}
+                <form action="/menu" method="POST">
+                  {% csrf_token %}
+                  <input hidden type="text" name= "product" value='{{product.id}}'>
+                  <input type="submit" class="ctn" value="Order Now"></input>
+                </form>
+             
+                {% endif %}
+              </div>
+
+              
+              
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        
+        
+    </section>
+        <footer>
+            <div class="footer_main">
+      
+              <div class="footer-tag">
+                <h2>Location</h2>
+                <p>Kolkata</p>
+                <p>Delhi</p>
+                <p>Jammu & Kashmir</p>
+                <p>Tamilnadu</p>
+                <p>Srinagar</p>
+                <p>Sikkim</p>
+              </div>
+      
+              <div class="footer-tag">
+                <h2>Quick Link</h2>
+                <p>Home</p>
+                <p>Menu</p>
+                <p>SignUp</p>
+                <p>SignIn</p>
+                <p>Order</p>
+                <p>AboutUs</p>
+                <p>ContactUs</p>
+                
+              </div>
+      
+              <div class="footer-tag">
+                <h2>Contact</h2>
+                <p>+91 7980547826</p>
+                <p>+91 7278963577</p>
+                <p>aroy9923@gmail.com</p>
+                <p>foodypanda123@gmail.com</p>
+              </div>
+              
+              <div class="footer-tag">
+                <h2>Our Services</h2>
+                <p>Fast Delivery</p>
+                <p>Easy Payment</p>
+                <p>24 X 7 Service</p>
+              </div>
+      
+            </div>
+      
+            <p class="end">Design by<span>@Akash Roy</span></p>
+        </footer>
+      
+    </body>
+</html>
+      

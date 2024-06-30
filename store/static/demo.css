@@ -1,0 +1,9 @@
+.addcart .row1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.but1{
+    background: #fac031;
+}
